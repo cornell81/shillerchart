@@ -1,0 +1,60 @@
+<div id="shillerbox">
+	<link rel="stylesheet" type="text/css" href="https://s3-us-west-2.amazonaws.com/dcpublic/shillerchart/css/chart.css">
+	<link rel="stylesheet" type="text/css" href="https://s3-us-west-2.amazonaws.com/dcpublic/shillerchart/css/nouislider.min.css">
+	<script src="js/nouislider.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://code.highcharts.com/stock/highstock.js"></script>
+	<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+	<script src="https://s3-us-west-2.amazonaws.com/dcpublic/shillerchart/js/wNumb.js"></script>
+
+	<script src="https://s3-us-west-2.amazonaws.com/dcpublic/shillerchart/js/shillerDataArrays.js"></script>
+
+	<div id="container"></div>
+	<div id="sliderbox">
+
+		<div id="slider"></div>
+		<p id="slidertitle">Adjust Low and High Values</p>
+	</div>
+	<script>
+		var slider = document.getElementById('slider');
+
+		noUiSlider.create(slider, {
+			start: [15, 30],
+			connect: false,
+			tooltips: true,
+			format: wNumb({
+				decimals: 0
+			}),
+			range: {
+				'min': 0,
+				'max': 46
+			}
+		});
+
+
+		slider.noUiSlider.on('change', function() {
+
+			var valuesArr = slider.noUiSlider.get();
+			var lowValue = valuesArr[0];
+			var highValue = valuesArr[1];
+
+			var strategyDate = findPow(lowValue, highValue, utc);
+
+			if (chart.get("Strategy")) {
+
+				chart.get("Strategy").remove();
+			}
+			chart.addSeries({
+				name: "Strategy",
+				id: "Strategy",
+				color: '#009933',
+				data: strategyDate
+			});
+		});
+
+	</script>
+	<!--
+	<script src="https://s3-us-west-2.amazonaws.com/dcpublic/shillerchart/js/shillerHighchart.js"></script>
+-->
+	<script src="js/shillerHighchart.js"></script>
+</div>

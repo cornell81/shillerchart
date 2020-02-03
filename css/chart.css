@@ -1,0 +1,35 @@
+#container {
+	width: 800px;
+	height: 400px;
+	margin: auto;
+
+}
+
+#shillerbox {
+	width: 850px;
+	height: 550px;
+	padding: 20px;
+	border: 1px solid black;
+}
+
+#formbox {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#slidertitle {
+	width: 850px;
+	font-size: 20;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 35px;
+	text-align: center;
+	display: inline-block;
+}
+
+#slider {
+	width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 70px;
+}
